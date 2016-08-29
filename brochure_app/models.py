@@ -1,4 +1,16 @@
+import os
+
 from django.db import models
+from django.db.models.signals import pre_delete
+from django.dispatch import receiver
+
+
+@receiver(pre_delete)
+def delete_leftover(sender, instance, **kwargs):
+    if sender == Brochure:
+        if os.path.isfile(instance.brochure.path):
+            os.remove(instance.brochure.path)
+            print("Removed")
 
 
 class Brochure(models.Model):
