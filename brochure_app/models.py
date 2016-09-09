@@ -26,7 +26,7 @@ class Questionnaire(models.Model):
     answer1 = models.CharField(max_length=2000, blank=False)
     answer2 = models.CharField(max_length=2000, blank=False)
     answer3 = models.CharField(max_length=2000, blank=False)
-    comments = models.CharField(max_length=2000, blank=False)
+    comments = models.CharField(max_length=2000, blank=True)
 
     def __str__(self):
         return 'Review by {}'.format(self.name)
