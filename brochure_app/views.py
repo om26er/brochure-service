@@ -19,7 +19,7 @@ class BrochureView(APIView):
     def get(self, request, *args, **kwargs):
         validator = BrochureValidator(data=request.query_params)
         validator.is_valid(raise_exception=True)
-        brochure = Brochure.objects.filter(
+        brochure = Brochure.objects.get(
             name=request.query_params.get('name'))
         serializer = BrochureSerializer(instance=brochure)
         return Response(data=serializer.data, status=status.HTTP_200_OK)
